@@ -53,6 +53,7 @@ function ViewStory({ params }: any) {
 
         </HTMLFlipBook>
         {count != 0 && <div className='absolute -left-4 top-[250px]' onClick={() => {
+          //@ts-ignore
           bookRef.current.pageFlip().flipPrev();
           setCount(count - 1)
         }}>
@@ -61,6 +62,7 @@ function ViewStory({ params }: any) {
         </div>}
 
         {count != (story?.output.chapters?.length - 1) && <div className='absolute -right-4 top-[250px]' onClick={() => {
+          //@ts-ignore
           bookRef.current.pageFlip().flipNext();
           setCount(count + 1)
         }}>
