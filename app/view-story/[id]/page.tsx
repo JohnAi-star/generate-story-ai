@@ -15,6 +15,7 @@ function ViewStory({ params }: any) {
   const [story, setStory] = useState<any>();
   const bookRef = useRef();
   const [count, setCount] = useState(0);
+
   useEffect(() => {
     console.log(params.id)
     getStory();
@@ -28,17 +29,19 @@ function ViewStory({ params }: any) {
   }
 
   return (
-    <div className='p-10 md:px-20 lg:px-40 flex-col'>
-      <h2 className='font-bold text-3xl text-center p-10 bg-secondary text-white'>
-        {story?.output?.story_cover?.title} Read Your Story and Download it</h2>
+    <div className='p-4 md:p-10 lg:px-20 flex-col'>
+      <h2 className='font-bold text-2xl md:text-3xl lg:text-4xl text-center p-5 md:p-10 bg-secondary text-white'>
+        {story?.output?.story_cover?.title} Read Your Story and Download it
+      </h2>
       <div className='relative'>
         {/* @ts-ignore */}
-        <HTMLFlipBook width={420} height={400}
-          showCover={true}
-          className='mt-10'
-          useMouseEvents={false}
+        <HTMLFlipBook 
+          width={420} 
+          height={400} 
+          showCover={true} 
+          className='mt-8 md:mt-10' 
+          useMouseEvents={false} 
           ref={bookRef}
-
         >
           <div>
             <BookCoverPage imageUrl={story?.coverImage} />
@@ -50,28 +53,30 @@ function ViewStory({ params }: any) {
               </div>
             ))
           }
-
         </HTMLFlipBook>
-        {count != 0 && <div className='absolute -left-4 top-[250px]' onClick={() => {
-          //@ts-ignore
-          bookRef.current.pageFlip().flipPrev();
-          setCount(count - 1)
-        }}>
 
-          <FaCircleArrowLeft className='text-[30px] text-secondary cursor-pointer' />
-        </div>}
+        {count !== 0 && (
+          <div className='absolute -left-4 top-[250px] sm:top-[200px] md:left-2 lg:left-4' onClick={() => {
+            //@ts-ignore
+            bookRef.current.pageFlip().flipPrev();
+            setCount(count - 1);
+          }}>
+            <FaCircleArrowLeft className='text-[30px] sm:text-[24px] text-secondary cursor-pointer' />
+          </div>
+        )}
 
-        {count != (story?.output.chapters?.length - 1) && <div className='absolute -right-4 top-[250px]' onClick={() => {
-          //@ts-ignore
-          bookRef.current.pageFlip().flipNext();
-          setCount(count + 1)
-        }}>
-          <FaCircleArrowRight className='text-[30px] text-secondary cursor-pointer' />
-        </div>}
+        {count !== (story?.output.chapters?.length - 1) && (
+          <div className='absolute -right-4 top-[250px] sm:top-[200px] md:right-2 lg:right-4' onClick={() => {
+            //@ts-ignore
+            bookRef.current.pageFlip().flipNext();
+            setCount(count + 1);
+          }}>
+            <FaCircleArrowRight className='text-[30px] sm:text-[24px] text-secondary cursor-pointer' />
+          </div>
+        )}
       </div>
-
     </div>
   )
 }
 
-export default ViewStory
+export default ViewStory;
