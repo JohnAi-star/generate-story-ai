@@ -66,7 +66,7 @@ function Header() {
             <NavbarMenu className="sm:hidden">
                 {MenuList.map((item, index) => (
                     <NavbarMenuItem key={index} className="p-2">
-                        <Link href={item.path} className="text-lg text-secondary font-medium">
+                        <Link href={item.path} className="text-lg font-medium">
                             {item.name}
                         </Link>
                     </NavbarMenuItem>
