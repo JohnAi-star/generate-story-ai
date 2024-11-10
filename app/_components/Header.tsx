@@ -17,79 +17,63 @@ import { UserButton } from '@clerk/nextjs'
 
 function Header() {
 
-    const {user, isSignedIn} = useUser();
-    const MenuList= [
-        {
-            name: 'Home',
-            path: '/'
-        },
-        {
-            name: 'Create Story',
-            path: '/create-story'
-        },
-        {
-            name: 'Explore Stories',
-            path: '/explore'
-        },
-        {
-            name: 'Pricing',
-            path: '/buy-credits'
-        },
-        {
-            name: 'Contact',
-            path: '/contact'
-        },
-]
-const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { user, isSignedIn } = useUser();
+    const MenuList = [
+        { name: 'Home', path: '/' },
+        { name: 'Create Story', path: '/create-story' },
+        { name: 'Explore Stories', path: '/explore' },
+        { name: 'Pricing', path: '/buy-credits' },
+        { name: 'Contact', path: '/contact' }
+    ];
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  return (
-    <Navbar maxWidth='full' onMenuOpenChange={setIsMenuOpen}>
-        <NavbarContent>
-            <NavbarMenuToggle 
-                aria-label={isMenuOpen?"Close menu": "Open Menu"}
-                className='sm:hidden'
-            />
-            <NavbarBrand>
-                <Image src={'/logo.svg'} alt='logo' width={40} height={40} />
-                <h2 className='font-bold text-2xl text-secondary ml-3'>Story Craft</h2>
-            </NavbarBrand>
-        </NavbarContent>
-        <NavbarContent justify='center' className='hidden sm:flex'>
-            {MenuList.map((item, index) => (
-                <NavbarItem className='text-xl text-secondary font-medium 
-                hover:underline mx-2'>
-                    <Link href={item.path}>
-                        {item.name}
-                    </Link>
-                </NavbarItem>
-            ))}
-        </NavbarContent>
-        <NavbarContent justify='end'>
-            <Link href={'/dashboard'}>
-            <Button className='bg-gradient-to-r 
-            from-purple-600 to-indigo-600 
-            hover:from-indigo-600 hover:to-purple-600 
-            text-white font-bold shadow-lg 
-            hover:no-underline'>
-                {isSignedIn?
-                'Dashboard':
-                'Get Started'    
-            }
-            </Button>
-            </Link>
-            <UserButton />
-        </NavbarContent>
-        <NavbarMenu>
-            {MenuList.map((item, index) => (
-                <NavbarMenuItem>
-                    <Link href={item.path}>
-                        {item.name}
-                    </Link>
-                </NavbarMenuItem>
-            ))}
-        </NavbarMenu>
-    </Navbar>
-  )
+    return (
+        <Navbar maxWidth="full" onMenuOpenChange={setIsMenuOpen}>
+            {/* Left side - logo and menu toggle for mobile */}
+            <NavbarContent>
+                <NavbarMenuToggle
+                    aria-label={isMenuOpen ? "Close menu" : "Open Menu"}
+                    className="sm:hidden"
+                />
+                <NavbarBrand className="flex items-center">
+                    <Image src="/logo.svg" alt="logo" width={40} height={40} />
+                    <h2 className="font-bold text-2xl text-secondary ml-3">Story Craft</h2>
+                </NavbarBrand>
+            </NavbarContent>
+
+            {/* Centered nav items - visible on medium screens and up */}
+            <NavbarContent justify="center" className="hidden sm:flex">
+                {MenuList.map((item, index) => (
+                    <NavbarItem key={index} className="text-lg md:text-xl text-secondary font-medium hover:underline mx-2">
+                        <Link href={item.path}>
+                            {item.name}
+                        </Link>
+                    </NavbarItem>
+                ))}
+            </NavbarContent>
+
+            {/* Right side - "Get Started"/Dashboard button and User Button */}
+            <NavbarContent justify="end">
+                <Link href="/dashboard">
+                    <Button className="px-4 py-2 md:px-6 md:py-3 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-indigo-600 hover:to-purple-600 text-white font-bold shadow-lg">
+                        {isSignedIn ? 'Dashboard' : 'Get Started'}
+                    </Button>
+                </Link>
+                <UserButton />
+            </NavbarContent>
+
+            {/* Mobile Menu - dropdown items visible only on smaller screens */}
+            <NavbarMenu className="sm:hidden">
+                {MenuList.map((item, index) => (
+                    <NavbarMenuItem key={index} className="p-2">
+                        <Link href={item.path} className="text-lg text-secondary font-medium">
+                            {item.name}
+                        </Link>
+                    </NavbarMenuItem>
+                ))}
+            </NavbarMenu>
+        </Navbar>
+    );
 }
 
-export default Header
+export default Header;
