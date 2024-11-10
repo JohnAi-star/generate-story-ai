@@ -100,7 +100,6 @@ function BuyCredits() {
             <div className="mt-10 items-center justify-center">
                 {selectedPrice > 0 && (
                     <PayPalButtons
-                        key={selectedOption} // Key added to force re-render
                         style={{ layout: "vertical" }}
                         disabled={!selectedOption || selectedOption === 0}
                         onApprove={() => OnPaymentSuccess()}
