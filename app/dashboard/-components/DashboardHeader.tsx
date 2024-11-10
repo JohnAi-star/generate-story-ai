@@ -14,8 +14,10 @@ function DashboardHeader() {
     <div className='p-4 md:p-7 bg-secondary text-white flex flex-col md:flex-row justify-between items-center'>
       <h2 className='font-bold text-2xl md:text-3xl mb-3 md:mb-0'>My All Stories</h2>
       <div className='flex flex-col md:flex-row gap-3 items-center'>
-        <Image src={'/coin.png'} alt='coin' width={40} height={40} className='w-10 h-10 md:w-12 md:h-12' />
-        <span className='text-lg md:text-2xl'>{userDetail?.credit} Credit Left</span>
+        <div className='flex items-center gap-2'> {/* Flex container for coin icon and credit text */}
+          <Image src={'/coin.png'} alt='coin' width={40} height={40} className='w-10 h-10 md:w-12 md:h-12' />
+          <span className='text-lg md:text-2xl'>{userDetail?.credit} Credit Left</span>
+        </div>
         <Link href={'/buy-credits'}>
           <Button className='bg-gradient-to-r from-purple-900 to-indigo-600 
             hover:from-indigo-600 hover:to-purple-900 text-white font-bold shadow-lg 
