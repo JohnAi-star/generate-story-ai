@@ -13,8 +13,8 @@ function DashboardHeader() {
   return (
     <div className='p-4 md:p-7 bg-secondary text-white flex flex-col md:flex-row justify-between items-center'>
       <h2 className='font-bold text-2xl md:text-3xl mb-3 md:mb-0'>My All Stories</h2>
-      <div className='flex flex-col md:flex-row gap-3 items-center'>
-        <div className='flex items-center gap-2'> {/* Flex container for coin icon and credit text */}
+      <div className='flex flex-col md:flex-row gap-3 items-center md:items-center'>
+        <div className='flex items-center gap-2'>
           <Image src={'/coin.png'} alt='coin' width={40} height={40} className='w-10 h-10 md:w-12 md:h-12' />
           <span className='text-lg md:text-2xl'>{userDetail?.credit} Credit Left</span>
         </div>
