@@ -30,6 +30,21 @@ function ViewStory({ params }: any) {
     setStory(result[0]);
   };
 
+  const handleDownload = () => {
+    const storyContent = `
+      Title: ${story?.output?.story_cover?.title}
+      \n\nDescription: ${story?.output?.description}
+      \n\nChapters: \n${story?.output?.chapters?.map((chapter: any, index: number) => `
+        Chapter ${index + 1}: ${chapter.chapter_title}
+        \n${chapter.description}`).join("\n")}`;
+
+    const blob = new Blob([storyContent], { type: "text/plain" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = `${story?.output?.story_cover?.title}.txt`;
+    link.click();
+  };
+
   return (
     <div className="p-4 md:p-10 lg:px-20 flex-col">
       <h2 className="font-bold text-2xl md:text-3xl lg:text-4xl text-center p-5 md:p-10 bg-secondary text-white">
@@ -82,6 +97,11 @@ function ViewStory({ params }: any) {
             <FaCircleArrowRight className="text-[30px] sm:text-[24px] text-secondary cursor-pointer" />
           </div>
         )}
+      </div>
+
+      {/* Download Button */}
+      <div className="text-center mt-5">
+        <Button className="mr-6" onClick={handleDownload}>Download Story</Button>
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+import { Button } from "@nextui-org/button";
 import React, { useState } from "react";
 import { MdPlayCircleFilled, MdStopCircle } from "react-icons/md";
 
@@ -10,6 +11,7 @@ function StoryPages({ storyChapter }: { storyChapter: StoryChapter }) {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const playSpeech = (text: string) => {
+    if (!text) return; // Prevent TTS if text is empty
     if (window?.speechSynthesis) {
       const synth = window.speechSynthesis;
       const textToSpeech = new SpeechSynthesisUtterance(text);
@@ -28,6 +30,18 @@ function StoryPages({ storyChapter }: { storyChapter: StoryChapter }) {
       window.speechSynthesis.cancel();
       setIsPlaying(false);
     }
+  };
+
+  const handleDownload = () => {
+    const chapterContent = `
+      Chapter: ${storyChapter?.chapter_title}
+      \n\nDescription: ${storyChapter?.description}`;
+
+    const blob = new Blob([chapterContent], { type: "text/plain" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = `${storyChapter?.chapter_title}.txt`;
+    link.click();
   };
 
   return (
@@ -54,6 +68,11 @@ function StoryPages({ storyChapter }: { storyChapter: StoryChapter }) {
         </div>
       </h2>
       <p className="text-lg p-10 mt-3 rounded-lg bg-slate-300">{storyChapter?.description}</p>
+      
+      {/* Download Button */}
+      <div className="text-center mt-5">
+        <Button onClick={handleDownload}>Download Chapter</Button>
+      </div>
     </div>
   );
 }
