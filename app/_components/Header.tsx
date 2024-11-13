@@ -8,7 +8,7 @@ import {
     NavbarMenuToggle,
     NavbarMenu,
     NavbarMenuItem
-  } from "@nextui-org/navbar";
+} from "@nextui-org/navbar";
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@nextui-org/button';
@@ -28,7 +28,7 @@ function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <Navbar maxWidth="full" onMenuOpenChange={setIsMenuOpen}>
+        <Navbar maxWidth="full" onMenuOpenChange={setIsMenuOpen} className="w-full">
             {/* Left side - logo and menu toggle for mobile */}
             <NavbarContent>
                 <NavbarMenuToggle
