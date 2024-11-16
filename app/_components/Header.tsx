@@ -36,8 +36,8 @@ function Header() {
                     className="sm:hidden"
                 />
                 <NavbarBrand className="flex items-center">
-                    <Image src="/logo.svg" alt="logo" width={40} height={40} />
-                    <h2 className="font-bold text-2xl text-secondary ml-3">Story Craft</h2>
+                    <Image src="/logo.svg" alt="logo" width={30} height={30} />
+                    <h2 className="font-bold text-xl text-secondary ml-3">Story Craft</h2>
                 </NavbarBrand>
             </NavbarContent>
 
@@ -55,7 +55,7 @@ function Header() {
             {/* Right side - "Get Started"/Dashboard button and User Button */}
             <NavbarContent justify="end">
                 <Link href="/dashboard">
-                    <Button className="px-4 py-2 md:px-6 md:py-3 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-indigo-600 hover:to-purple-600 text-white font-bold shadow-lg">
+                    <Button className="px-4 py-2 sm:px-2 sm:py-1 md:px-6 md:py-3 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-indigo-600 hover:to-purple-600 text-white font-bold shadow-lg">
                         {isSignedIn ? 'Dashboard' : 'Get Started'}
                     </Button>
                 </Link>
