@@ -74,7 +74,7 @@ ${story.output?.chapters?.length
       <div className='relative'>
         {/* FlipBook Component */}
         {/*@ts-ignore*/}
-        <HTMLFlipBook width={400} height={380} showCover={true} className='mt-6 md:mt-10' useMouseEvents={false} ref={bookRef}>
+        <HTMLFlipBook width={360} height={400} showCover={true} className='mt-6 md:mt-10' useMouseEvents={false} ref={bookRef}>
           <div>
             <BookCoverPage imageUrl={story.coverImage} showDownloadButton={false} /> {/* Hide button here */}
           </div>
